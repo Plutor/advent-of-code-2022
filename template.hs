@@ -2,5 +2,5 @@ readInt :: String -> Int
 readInt = read
 
 main = do
-  d <- readFile "data/1.txt"
+  d <- readFile "data/DAYHEREDUMMY.txt"
   let l = lines d
