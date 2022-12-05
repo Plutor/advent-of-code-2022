@@ -9,3 +9,8 @@ And I am again coding on Windows with [Sublime Text 4](https://www.sublimetext.c
 
 * Oh boy Haskell is going to be a learning curve. Day 1 probably took me an hour to wrap my head around.
 * Haskell tried to get a little too cute with operators. The fact that you've got things like `.` and `$` and `\` are understandable, but `!!` to index a list? I have some dignity.
+* Things I need to learn instead of just trying permutations until they work:
+  1. What's IO? Why do IO functions need to be use with <- instead of let? Is this related to do/return?
+  1. `.` and `$` seem to be useful in getting rid of `()`s but not always. Are there better ways to do paren-heavy nested calls than the way I'm doing them?
+  1. Why are tuples so useless? (Especially with more than 2 elements?)
+  1. Should I be creating objects to make code like day 5 a little more scrutable?
