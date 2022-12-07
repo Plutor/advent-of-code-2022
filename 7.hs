@@ -44,8 +44,14 @@ sumTotalsLT mx d = if totsize d < mx
                    then (totsize d) + (sum (Set.map (sumTotalsLT mx) (dirs d)))
                    else sum (Set.map (sumTotalsLT mx) (dirs d))
 
+smallestDirGE :: Int -> Dir -> Int
+smallestDirGE mx d = if totsize d < mx then maxBound
+  else minimum ([totsize d] ++ map (smallestDirGE mx) (Set.toList . dirs $ d))
+
 main = do
   d <- readFile "data/7.txt"
   let l = drop 1 . lines $ d
   let root = foldl parseLine (Dir{dname=[], totsize=0, files=Set.empty, dirs=Set.empty}, []) l
   print (sumTotalsLT 100000 (fst root))
+  let needed = totsize (fst root) - 40000000
+  print (smallestDirGE needed (fst root))
