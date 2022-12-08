@@ -1,9 +1,8 @@
 readInt :: String -> Int
 readInt = read
 
--- TODO implement
 rotate :: String -> String
-rotate f = f
+rotate f = foldl (\out i -> out ++ [f !! ((mod i 4)*4 + (div i 4))]) "" [0..]
 
 visibleInRow :: String -> Int -> Int -> Bool
 visibleInRow f _ 0 = True
@@ -21,6 +20,5 @@ visibleInRow f x y = fst (foldl
 
 main = do
   d <- readFile "data/8.txt"
-  let l = concat . lines $ d
-  print (visibleInRow l 23 1)
-  -- TODO: for each (x, y), count (visibleInRow x y || visibleInRow (rotate f) y x)
+  let f = concat . lines $ d
+  print . sum $ (map (\i -> if visibleInRow f (mod i 99) (div i 99) || visibleInRow (rotate f) (mod i 99) (div i 99) then 1 else 0) [0..9801])
