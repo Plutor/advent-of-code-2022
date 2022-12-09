@@ -16,3 +16,7 @@ And I am again coding on Windows with [Sublime Text 4](https://www.sublimetext.c
   1. Should I be creating objects to make code like day 5 a little more scrutable?
 * Objects have annoying boilerplate no matter how I do them (with or without named properties). I prefer neither.
 * The `... where ...` syntax is pretty useful, I should use that more.
+
+## Days of note
+
+* Day 8 was the first really challenging day. My first solution for part 1 was O(n^2) (or maybe worse?) and then part 2 made that infeasible. As of the 9th I still need to go back and redo part 2.
