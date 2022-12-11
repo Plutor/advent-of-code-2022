@@ -7,15 +7,21 @@ px (Point x _) = x
 py :: Point -> Int
 py (Point _ y) = y
 
-data Snake = Snake Point [Point]  -- head, tail history
-hd :: Snake -> Point
-hd (Snake h _) = h
+data Snake = Snake [Point] [Point]  -- all knots, tail history
+knots :: Snake -> [Point]
+knots (Snake knots _) = knots
 tailHist :: Snake -> [Point]
 tailHist (Snake _ tailHist) = tailHist
 
 move :: Snake -> (Char, Int) -> Snake
 move sn (dir,dist) =
-  foldl (\sn d -> Snake (moveHead (hd sn) d) ((tailHist sn) ++ [moveTail (last . tailHist $ sn) (moveHead (hd sn) d)])) sn (replicate dist dir)
+  foldl (\sn d -> moveSnake sn d) sn (replicate dist dir)
+
+moveSnake :: Snake -> Char -> Snake
+moveSnake sn dir = Snake newKnots (tailHist sn ++ [last newKnots])
+  where newKnots = foldl (\kn k -> kn ++ [moveKnot k (last kn)])
+                         [(moveHead (head . knots $ sn) dir)]
+                         (tail . knots $ sn)
 
 moveHead :: Point -> Char -> Point
 moveHead h dir = case dir of
@@ -24,8 +30,8 @@ moveHead h dir = case dir of
   'L' -> Point (px h - 1) (py h)
   'R' -> Point (px h + 1) (py h)
 
-moveTail :: Point -> Point -> Point
-moveTail t h = case (px h - px t, py h - py t) of
+moveKnot :: Point -> Point -> Point
+moveKnot t h = case (px h - px t, py h - py t) of
   (2,2) -> Point (px t + 1) (py t + 1)
   (2,1) -> Point (px t + 1) (py t + 1)
   (1,2) -> Point (px t + 1) (py t + 1)
@@ -48,7 +54,7 @@ parseLine :: String -> (Char, Int)
 parseLine l = ((words l)!!0!!0, read ((words l)!!1))
 
 main = do
-  d <- readFile "data/9.txt"
+  d <- readFile "data/09.txt"
   let l = lines d
-  let sn = foldl (\sn line -> move sn (parseLine line)) (Snake (Point 0 0) [Point 0 0]) l
+  let sn = foldl (\sn line -> move sn (parseLine line)) (Snake (replicate 10 (Point 0 0)) [Point 0 0]) l
   print . length . Set.fromList . tailHist $ sn

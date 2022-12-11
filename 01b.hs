@@ -12,7 +12,7 @@ getSums arr v =
       take (length arr - 1) arr ++ [last arr + readInt v]
 
 main = do
-  d <- readFile "data/1.txt"
+  d <- readFile "data/01.txt"
   let l = lines d
   let sums = foldl getSums [0] l
   print . sum . take 3 . reverse . sort $ sums

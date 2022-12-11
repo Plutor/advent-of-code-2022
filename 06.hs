@@ -5,7 +5,7 @@ data State = State
 
 
 main = do
-  d <- readFile "data/6.txt"
+  d <- readFile "data/06.txt"
   print d
   let r = foldl (\s c -> if done s then s
                          else if elem c (last3 s) || elem ((last3 s)!!0) (drop 1 (last3 s)) || (last3 s)!!1==(last3 s)!!2 then State{done=False, pos=(pos s)+1, last3=(drop 1 (last3 s))++[c]}

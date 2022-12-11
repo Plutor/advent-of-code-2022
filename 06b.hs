@@ -7,7 +7,7 @@ data State = State
 
 
 main = do
-  d <- readFile "data/6.txt"
+  d <- readFile "data/06.txt"
   print d
   let r = foldl (\s c -> if done s then s
                          else if length (fromList (last13 s++[c])) /= 14 then State{done=False, pos=(pos s)+1, last13=(drop 1 (last13 s))++[c]}

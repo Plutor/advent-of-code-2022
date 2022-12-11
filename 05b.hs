@@ -30,7 +30,7 @@ runInstruction stacks i = do
   (take (i !! 2) ns) ++ [crates ++ ns !! (i !! 2)] ++ (drop ((i !! 2)+1) ns)
 
 main = do
-  d <- readFile "data/5.txt"
+  d <- readFile "data/05.txt"
   let l = lines d
   x <- parseData l
   let o = runInstructions x

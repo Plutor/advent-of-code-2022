@@ -10,7 +10,7 @@ outcomeScore m = if member m (fromList ["A X", "B Y", "C Z"]) then 3 -- tie
   else 0
 
 main = do
-  d <- readFile "data/2.txt"
+  d <- readFile "data/02.txt"
   let l = lines d
   let sc = foldl (\acc m -> acc + shapeScore m + outcomeScore m) 0 l
   print sc

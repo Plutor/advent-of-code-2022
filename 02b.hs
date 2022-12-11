@@ -10,7 +10,7 @@ outcomeScore :: [Char] -> Int
 outcomeScore m = (ord (last m) - ord 'X') * 3
 
 main = do
-  d <- readFile "data/2.txt"
+  d <- readFile "data/02.txt"
   let l = lines d
   let sc = foldl (\acc m -> acc + shapeScore m + outcomeScore m) 0 l
   print sc

@@ -9,7 +9,7 @@ markVisiblesFromLeft f v = fst (foldl
   (zip [0..] f))
 
 main = do
-  d <- readFile "data/8.txt"
+  d <- readFile "data/08.txt"
   let f = concat . lines $ d
   let v = snd (foldl (\(fo,v) _ -> (rotate fo, rotate ( markVisiblesFromLeft fo v )))
                      (f, replicate (length f) False)
