@@ -20,3 +20,4 @@ And I am again coding on Windows with [Sublime Text 4](https://www.sublimetext.c
 ## Days of note
 
 * Day 8 was the first really challenging day. My first solution for part 1 was O(n^2) (or maybe worse?) and then part 2 made that infeasible. As of the 9th I still need to go back and redo part 2.
+* I struggled with day 12 for a while. Functional programming really forces you to think about problems like this in terms of _transformations_. I had to wrap my head around what would turn a "step" in the solution into the next "step", and then kinda work from there.
